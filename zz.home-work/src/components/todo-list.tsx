@@ -28,7 +28,8 @@ export const TodoList = ({
   return (
     <List style={{ marginTop: '2rem' }}>
       {todos.map((todo) => (
-        <ListItem key={todo.id}>
+        <ListItem key={todo.id}
+                  data-testid={`todo-list-item-${todo.id}`}>
           <Checkbox
             inputProps={
               {
@@ -52,6 +53,7 @@ export const TodoList = ({
             }}
           />
           <IconButton
+            data-testid={`delete-icon-button-${todo.id}`}
             edge="end"
             aria-label="delete"
             onClick={() => handleDeleteTodo(todo.id)}
