@@ -28,8 +28,7 @@ export const TodoList = ({
   return (
     <List style={{ marginTop: '2rem' }}>
       {todos.map((todo) => (
-        <ListItem key={todo.id}
-                  data-testid={`todo-list-item-${todo.id}`}>
+        <ListItem key={todo.id} data-testid={`todo-list-item-${todo.id}`}>
           <Checkbox
             checked={todo.completed}
             onChange={() => handleToggleTodo(todo.id)}
