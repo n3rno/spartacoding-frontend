@@ -37,6 +37,7 @@ export const TodoForm = ({
         value={todo}
         onChange={(e) => updateTodo(e.target.value)}
         style={{ marginBottom: '1rem' }}
+        inputProps={{ maxLength: 99 }}
       />
       <TextField
         label="Deadline"
