@@ -48,6 +48,12 @@ describe('todo form test', () => {
     expect(todoFormDeadline).toHaveValue('');
   });
 
+  /**
+   * 2-4. Todo List 추가기능을 TDD로 구현하기
+   * 신규 기능 Spec
+   * 1) 할일을 입력할 때 100자 이상 작성하면 입력할 수 없다.
+   * 2) 할일을 입력할 때 데드라인 날짜가 오늘 날짜 미만이면 입력할 수 없다.
+   */
   it('New Todo의 maxlength가 99자이다.', () => {
     fireEvent.change(todoFormText, {
       target: {
@@ -57,9 +63,22 @@ describe('todo form test', () => {
     });
     act(() => {
       fireEvent.focus(todoFormText);
+      fireEvent.blur(todoFormText);
     });
     expect(todoFormText).toHaveValue(
       '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담'
+    );
+  });
+
+  it('데드라인에 오늘 이전 날짜를 입력하면 오늘 날짜로 변경된다.', () => {
+    fireEvent.change(todoFormDeadline, { target: { value: '2024-04-21' } });
+    act(() => {
+      fireEvent.focus(todoFormDeadline);
+      fireEvent.blur(todoFormDeadline);
+    });
+    const today = new Date();
+    expect(todoFormDeadline).toHaveValue(
+      today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
     );
   });
 });
