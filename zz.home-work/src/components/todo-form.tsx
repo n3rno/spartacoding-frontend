@@ -2,6 +2,7 @@ import { TextField, Button } from '@mui/material';
 import { Dispatch } from 'react';
 import { Todo } from '../types/todo';
 import { useTodoForm } from '../hooks/use-todo-form';
+import moment from 'moment';
 
 export const TodoForm = ({
   todos,
@@ -47,7 +48,13 @@ export const TodoForm = ({
         value={deadline}
         onChange={(e) => {
           const selectedDate = e.target.value;
-          updateDeadline(selectedDate);
+          const selectedNewDate = moment(selectedDate);
+          const today = moment();
+          const formattedToday = moment().format('YYYY-MM-DD');
+          updateDeadline(
+            // selectedNewDate <= today ? formattedToday : selectedDate
+            selectedNewDate.isBefore(today) ? formattedToday : selectedDate
+          );
         }}
         style={{ marginBottom: '1rem' }}
       />
