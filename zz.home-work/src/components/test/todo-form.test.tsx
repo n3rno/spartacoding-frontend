@@ -70,7 +70,7 @@ describe('todo form test', () => {
     );
   });
 
-  it('데드라인에 오늘 이전 날짜를 입력하면 오늘 날짜로 변경된다.', () => {
+  it('데드라인에 오늘 이전 날짜를 클릭하면 오늘 날짜로 변경된다.', () => {
     fireEvent.change(todoFormDeadline, { target: { value: '2024-04-21' } });
     act(() => {
       fireEvent.focus(todoFormDeadline);
