@@ -1,6 +1,7 @@
 import { render, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TodoForm } from '../todo-form';
+import moment from 'moment';
 
 describe('todo form test', () => {
   let todoFormText: HTMLElement;
@@ -82,9 +83,6 @@ describe('todo form test', () => {
       fireEvent.focus(todoFormDeadline);
       fireEvent.blur(todoFormDeadline);
     });
-    const today = new Date();
-    expect(todoFormDeadline).toHaveValue(
-      today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
-    );
+    expect(todoFormDeadline).toHaveValue(moment().format('YYYY-MM-DD'));
   });
 });
