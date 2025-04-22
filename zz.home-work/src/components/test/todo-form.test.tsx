@@ -56,23 +56,44 @@ describe('todo form test', () => {
    * 1) 할일을 입력할 때 100자 이상 작성하면 입력할 수 없다.
    * 2) 할일을 입력할 때 데드라인 날짜가 오늘 날짜 미만이면 입력할 수 없다.
    */
+  // 
+  it('userEvent 이용하여 e키를 입력한다', async () => {
+    const user = userEvent.setup();
+
+    fireEvent.change(todoFormText, {
+      target: {
+        value:
+          '',
+      },
+    });
+    
+    await act(async () => {
+      await user.click(todoFormText); // focus
+      await user.keyboard('e'); // 입력
+    });
+
+    expect(todoFormText).toHaveValue(
+      'e'
+    );
+  });
+
   it('New Todo의 maxlength가 99자이다.', async () => {
     const user = userEvent.setup();
 
     fireEvent.change(todoFormText, {
       target: {
         value:
-          '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 ',
+          '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담',
       },
     });
+
     await act(async () => {
       await user.click(todoFormText); // focus
       await user.keyboard('e'); // 입력
     });
 
-
     expect(todoFormText).toHaveValue(
-      '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 e'
+      '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담'
     );
   });
 
