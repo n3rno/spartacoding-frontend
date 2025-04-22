@@ -34,6 +34,7 @@ export const TodoForm = ({
       <TextField
         inputProps={{
           'data-testid': 'todo-form-text',
+          maxLength: 99
         }}
         label="New Todo"
         variant="outlined"
@@ -41,7 +42,6 @@ export const TodoForm = ({
         value={todo}
         onChange={(e) => updateTodo(e.target.value)}
         style={{ marginBottom: '1rem' }}
-        inputProps={{ maxLength: 99 }}
       />
       <TextField
         label="Deadline"

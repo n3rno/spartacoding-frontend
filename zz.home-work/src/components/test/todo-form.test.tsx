@@ -1,4 +1,5 @@
 import { render, fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { TodoForm } from '../todo-form';
 
 describe('todo form test', () => {
@@ -54,25 +55,30 @@ describe('todo form test', () => {
    * 1) 할일을 입력할 때 100자 이상 작성하면 입력할 수 없다.
    * 2) 할일을 입력할 때 데드라인 날짜가 오늘 날짜 미만이면 입력할 수 없다.
    */
-  it('New Todo의 maxlength가 99자이다.', () => {
+  it('New Todo의 maxlength가 99자이다.', async () => {
+    const user = userEvent.setup();
+
     fireEvent.change(todoFormText, {
       target: {
         value:
-          '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기',
+          '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 ',
       },
     });
-    act(() => {
-      fireEvent.focus(todoFormText);
-      fireEvent.blur(todoFormText);
+    await act(async () => {
+      await user.click(todoFormText); // focus
+      await user.keyboard('e'); // 입력
     });
+
+
     expect(todoFormText).toHaveValue(
-      '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담'
+      '파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 담기파운드 접시에 e'
     );
   });
 
   it('데드라인에 오늘 이전 날짜를 클릭하면 오늘 날짜로 변경된다.', () => {
     fireEvent.change(todoFormDeadline, { target: { value: '2024-04-21' } });
     act(() => {
+      fireEvent.click(todoFormDeadline);
       fireEvent.focus(todoFormDeadline);
       fireEvent.blur(todoFormDeadline);
     });
