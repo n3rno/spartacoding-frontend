@@ -2,9 +2,9 @@ name: n3rno-ci
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "week-3/homework" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "week-3/homework" ]
     types: [opened, synchronize]
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node
 
@@ -37,7 +37,7 @@ jobs:
   # lint 확인 및 수정
   lint:
     runs-on: ubuntu-latest
-    needs: install-dependencies
+    needs: install-dependencies # install-dependencies가 완료된 후에 lint를 실행하겠다
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -51,8 +51,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies (if not cached)
@@ -81,8 +81,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies (if not cached)
@@ -111,8 +111,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies (if not cached)
