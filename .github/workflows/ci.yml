@@ -2,9 +2,9 @@ name: n3rno-ci
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "zz.home-work/homework" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "zz.home-work/homework" ]
     types: [opened, synchronize]
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node
 
@@ -51,8 +51,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies (if not cached)
@@ -81,8 +81,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies (if not cached)
@@ -111,8 +111,8 @@ jobs:
         id: restore-node-modules
         uses: actions/cache@v3
         with:
-          path: week-3/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('week-3/package-lock.json') }}
+          path: zz.home-work/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('zz.home-work/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Install dependencies (if not cached)
